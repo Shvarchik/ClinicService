@@ -20,7 +20,7 @@ namespace ClinicService.Controllers
         }
 
         [HttpPost("create")]
-        public IActionResult Create([FromBody] CreateClientRequest createRequest)
+        public ActionResult<int> Create([FromBody] CreateClientRequest createRequest)
         {
             int res = _clientRepository.Create(new Client
             {
@@ -34,7 +34,7 @@ namespace ClinicService.Controllers
         }
 
         [HttpPut("update")]
-        public IActionResult Update([FromBody] UpdateClientRequest updateRequest)
+        public ActionResult<int> Update([FromBody] UpdateClientRequest updateRequest)
         {
             int res = _clientRepository.Update(new Client
             {
@@ -49,20 +49,20 @@ namespace ClinicService.Controllers
         }
 
         [HttpDelete("delete")]
-        public IActionResult Delete( int clientId)
+        public ActionResult<int> Delete( int clientId)
         {
             int res = _clientRepository.Delete(clientId);
             return Ok(res);
         }
 
         [HttpGet("get-all")]
-        public IActionResult GetAll()
+        public ActionResult<List<Client>> GetAll()
         {
             return Ok(_clientRepository.GetAll());
         }
 
         [HttpGet("get-by-id")]
-        public IActionResult GetById (int clientId)
+        public ActionResult<Client> GetById (int clientId)
         {
             return Ok(_clientRepository.GetById(clientId));
         }
